@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Maker</title>
+    <style>
+      fieldset {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Box Maker</h1>
+    <form id="form">
+      <fieldset>
+        <label for="l">L</label>
+        <input id="l" name="l" type="number" value="0" />
+        <label for="w">W</label>
+        <input id="w" name="w" type="number" value="0" />
+        <label for="h">H</label>
+        <input id="h" name="h" type="number" value="0" />
+      </fieldset>
+      <fieldset>
+        <label for="a">A</label>
+        <input id="a" name="a" disabled type="number" value="0" />
+        <label for="b">B</label>
+        <input id="b" name="b" disabled type="number" value="0" />
+      </fieldset>
+    </form>
+    <img src="template.png" alt="Shipping Box Template" width="750" height="500" />
+    <script>
+      const form = document.getElementById("form"),
+        l = document.getElementById("l"),
+        w = document.getElementById("w"),
+        h = document.getElementById("h"),
+        a = document.getElementById("a"),
+        b = document.getElementById("b");
+
+      form.addEventListener("change", () => {
+        const values = {
+          l: Number(l.value),
+          w: Number(w.value),
+          h: Number(h.value),
+          a: Number(h.value) * 3 + Number(l.value) * 2,
+          b: Number(h.value) * 2 + Number(w.value),
+        };
+
+        a.value = values.a;
+        b.value = values.b;
+
+        console.log(values);
+      });
+    </script>
+  </body>
+</html>
