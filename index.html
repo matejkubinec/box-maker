@@ -3,15 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>Box Maker</title>
     <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      svg {
+        font-family: "Courier New", Courier, monospace;
+      }
+
       fieldset {
         margin-bottom: 10px;
+      }
+
+      label {
+        padding-left: 5px;
+      }
+
+      form input {
+        width: 50px;
+      }
+
+      #reset {
+        margin-left: 25px;
+      }
+
+      button {
+        padding: 1px 10px;
       }
     </style>
   </head>
   <body>
-    <h1>Box Maker</h1>
+    <h1>📦 Box Maker</h1>
     <form id="form">
       <fieldset>
         <label for="l">L</label>
@@ -26,18 +53,115 @@
         <input id="a" name="a" disabled type="number" value="0" />
         <label for="b">B</label>
         <input id="b" name="b" disabled type="number" value="0" />
+        <button id="reset" type="reset">Reset</button>
       </fieldset>
     </form>
-    <img src="template.png" alt="Shipping Box Template" width="750" height="500" />
+    <h3>Shipping Box Template</h3>
+    <svg viewBox="-10 30 200 65">
+      <style>
+        rect {
+          fill: transparent;
+        }
+      </style>
+
+      <rect width="10" height="20" x="10" y="-70" transform="scale(1,-1)" />
+      <rect width="10" height="20" x="50" y="-70" transform="scale(1,-1)" />
+      <rect width="10" height="20" x="90" y="-70" transform="scale(1,-1)" />
+      <rect width="30" height="10" x="20" y="40" />
+      <rect width="10" height="10" x="50" y="40" />
+      <rect width="10" height="10" x="50" y="70" />
+      <rect width="30" height="10" x="60" y="40" />
+      <rect width="30" height="10" x="20" y="70" />
+      <rect width="30" height="10" x="60" y="70" />
+      <rect width="30" height="20" x="20" y="50" />
+      <rect width="30" height="20" x="60" y="50" />
+
+      <polyline
+        points="10,70 10,50 20,50 20,40 50,40 50,50 50,42 52,40 58,40 60,42 60,50 60,40 90,40 90,50, 100,50 100,70 90,70 90,80 60,80 60,70 60,78 58,80 52,80 50,78 50,70 50,80 20,80 20,70 10,70"
+        fill="none"
+        stroke="black"
+        stroke-width="0.25"
+      />
+      <polyline
+        points="20,50 90,50 90,70 20,70 20,50"
+        fill="none"
+        stroke="black"
+        stroke-width="0.25"
+        stroke-dasharray="1"
+      />
+      <polyline
+        points="50,50 50,70"
+        fill="none"
+        stroke="black"
+        stroke-width="0.25"
+        stroke-dasharray="1"
+      />
+      <polyline
+        points="60,50 60,70"
+        fill="none"
+        stroke="black"
+        stroke-width="0.25"
+        stroke-dasharray="1"
+      />
+
+      <polyline
+        points="5,40 5,85"
+        fill="none"
+        stroke="black"
+        stroke-width="0.25"
+        stroke-dasharray="1"
+      />
+      <text id="text-b" x="-3" y="62" font-size="5">B</text>
+
+      <polyline
+        points="5,85 100,85"
+        fill="none"
+        stroke="black"
+        stroke-width="0.25"
+        stroke-dasharray="1"
+      />
+      <text id="text-a" x="53" y="90" font-size="5" textLength="5.5">A</text>
+
+      <text id="text-l-1" x="33" y="69" font-size="5" textLength="5.5">L</text>
+      <text id="text-l-2" x="73" y="69" font-size="5" textLength="5.5">L</text>
+
+      <text
+        id="text-h-1"
+        x="13"
+        y="69"
+        font-size="5"
+        textLength="5.5"
+        color="inherit"
+      >
+        H
+      </text>
+      <text id="text-h-2" x="93" y="69" font-size="5" textLength="5.5">H</text>
+      <text id="text-h-3" x="21" y="47" font-size="5" textLength="5.5">H</text>
+      <text id="text-h-4" x="21" y="77" font-size="5" textLength="5.5">H</text>
+      <text id="text-h-5" x="53" y="69" font-size="5" textLength="5.5">H</text>
+
+      <text id="text-w-1" x="21" y="62" font-size="5" textLength="5.5">W</text>
+    </svg>
+    <button id="download">Download</button>
     <script>
       const form = document.getElementById("form"),
+        download = document.getElementById("download"),
+        svg = document.querySelector("svg"),
         l = document.getElementById("l"),
         w = document.getElementById("w"),
         h = document.getElementById("h"),
         a = document.getElementById("a"),
-        b = document.getElementById("b");
+        b = document.getElementById("b"),
+        textA = document.getElementById("text-a"),
+        textB = document.getElementById("text-b");
 
-      form.addEventListener("change", () => {
+      const updateText = (node, value) => {
+        if (node) {
+          node.childNodes[0].nodeValue = value;
+        }
+      };
+
+      const update = () => {
         const values = {
           l: Number(l.value),
           w: Number(w.value),
@@ -49,8 +173,45 @@
         a.value = values.a;
         b.value = values.b;
 
-        console.log(values);
-      });
+        updateText(textA, values.a);
+        updateText(textB, values.b);
+
+        for (let i = 0; i < 2; i++) {
+          updateText(document.getElementById(`text-l-${i + 1}`), values.l);
+        }
+
+        for (let i = 0; i < 5; i++) {
+          updateText(document.getElementById(`text-h-${i + 1}`), values.h);
+        }
+
+        for (let i = 0; i < 1; i++) {
+          updateText(document.getElementById(`text-w-${i + 1}`), values.w);
+        }
+      };
+
+      const triggerDownload = (imgURI, fileName) => {
+        const a = document.createElement("a");
+
+        a.setAttribute("download", "image.svg");
+        a.setAttribute("href", imgURI);
+        a.setAttribute("target", "_blank");
+
+        a.click();
+      };
+
+      const downloadImage = () => {
+        const data = new XMLSerializer().serializeToString(svg);
+        const blob = new Blob([data], {
+          type: "image/svg+xml;charset=utf-8",
+        });
+        const url = URL.createObjectURL(blob);
+
+        triggerDownload(url);
+      };
+
+      document.addEventListener("DOMContentLoaded", update);
+      form.addEventListener("change", update);
+      download.addEventListener("click", downloadImage);
     </script>
   </body>
 </html>
