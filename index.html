@@ -42,17 +42,17 @@
     <form id="form">
       <fieldset>
         <label for="l">L</label>
-        <input id="l" name="l" type="number" value="0" />
+        <input id="l" name="l" type="number" value="0" min="0" />
         <label for="w">W</label>
-        <input id="w" name="w" type="number" value="0" />
+        <input id="w" name="w" type="number" value="0" min="0" />
         <label for="h">H</label>
-        <input id="h" name="h" type="number" value="0" />
+        <input id="h" name="h" type="number" value="0" min="0" />
       </fieldset>
       <fieldset>
         <label for="a">A</label>
-        <input id="a" name="a" disabled type="number" value="0" />
+        <input id="a" name="a" disabled type="number" value="0" min="0" />
         <label for="b">B</label>
-        <input id="b" name="b" disabled type="number" value="0" />
+        <input id="b" name="b" disabled type="number" value="0" min="0" />
         <button id="reset" type="reset">Reset</button>
       </fieldset>
     </form>
@@ -173,19 +173,27 @@
         a.value = values.a;
         b.value = values.b;
 
-        updateText(textA, values.a);
-        updateText(textB, values.b);
+        if (values.l || values.w || values.h) {
+          updateImageText(values.l, values.w, values.h, values.a, values.b);
+        } else {
+          updateImageText("L", "W", "H", "A", "B");
+        }
+      };
+
+      const updateImageText = (l, w, h, a, b) => {
+        updateText(textA, a);
+        updateText(textB, b);
 
         for (let i = 0; i < 2; i++) {
-          updateText(document.getElementById(`text-l-${i + 1}`), values.l);
+          updateText(document.getElementById(`text-l-${i + 1}`), l);
         }
 
         for (let i = 0; i < 5; i++) {
-          updateText(document.getElementById(`text-h-${i + 1}`), values.h);
+          updateText(document.getElementById(`text-h-${i + 1}`), h);
         }
 
         for (let i = 0; i < 1; i++) {
-          updateText(document.getElementById(`text-w-${i + 1}`), values.w);
+          updateText(document.getElementById(`text-w-${i + 1}`), w);
         }
       };
 
@@ -211,6 +219,7 @@
 
       document.addEventListener("DOMContentLoaded", update);
       form.addEventListener("change", update);
+      form.addEventListener("reset", update);
       download.addEventListener("click", downloadImage);
     </script>
   </body>
