@@ -18,6 +18,7 @@
 
       fieldset {
         margin-bottom: 10px;
+        border-radius: 4px;
       }
 
       label {
@@ -34,6 +35,27 @@
 
       button {
         padding: 1px 10px;
+      }
+
+      svg {
+        width: 750px;
+      }
+
+      .box-maker-template {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .download-form {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .download-form input {
+        width: 150px;
       }
     </style>
   </head>
@@ -57,95 +79,116 @@
       </fieldset>
     </form>
     <h3>Shipping Box Template</h3>
-    <svg viewBox="-10 30 200 65">
-      <style>
-        rect {
-          fill: transparent;
-        }
-      </style>
+    <div class="box-maker-template">
+      <svg viewBox="-10 30 125 65">
+        <style>
+          rect {
+            fill: transparent;
+          }
+        </style>
 
-      <rect width="10" height="20" x="10" y="-70" transform="scale(1,-1)" />
-      <rect width="10" height="20" x="50" y="-70" transform="scale(1,-1)" />
-      <rect width="10" height="20" x="90" y="-70" transform="scale(1,-1)" />
-      <rect width="30" height="10" x="20" y="40" />
-      <rect width="10" height="10" x="50" y="40" />
-      <rect width="10" height="10" x="50" y="70" />
-      <rect width="30" height="10" x="60" y="40" />
-      <rect width="30" height="10" x="20" y="70" />
-      <rect width="30" height="10" x="60" y="70" />
-      <rect width="30" height="20" x="20" y="50" />
-      <rect width="30" height="20" x="60" y="50" />
+        <rect width="10" height="20" x="10" y="-70" transform="scale(1,-1)" />
+        <rect width="10" height="20" x="50" y="-70" transform="scale(1,-1)" />
+        <rect width="10" height="20" x="90" y="-70" transform="scale(1,-1)" />
+        <rect width="30" height="10" x="20" y="40" />
+        <rect width="10" height="10" x="50" y="40" />
+        <rect width="10" height="10" x="50" y="70" />
+        <rect width="30" height="10" x="60" y="40" />
+        <rect width="30" height="10" x="20" y="70" />
+        <rect width="30" height="10" x="60" y="70" />
+        <rect width="30" height="20" x="20" y="50" />
+        <rect width="30" height="20" x="60" y="50" />
 
-      <polyline
-        points="10,70 10,50 20,50 20,40 50,40 50,50 50,42 52,40 58,40 60,42 60,50 60,40 90,40 90,50, 100,50 100,70 90,70 90,80 60,80 60,70 60,78 58,80 52,80 50,78 50,70 50,80 20,80 20,70 10,70"
-        fill="none"
-        stroke="black"
-        stroke-width="0.25"
-      />
-      <polyline
-        points="20,50 90,50 90,70 20,70 20,50"
-        fill="none"
-        stroke="black"
-        stroke-width="0.25"
-        stroke-dasharray="1"
-      />
-      <polyline
-        points="50,50 50,70"
-        fill="none"
-        stroke="black"
-        stroke-width="0.25"
-        stroke-dasharray="1"
-      />
-      <polyline
-        points="60,50 60,70"
-        fill="none"
-        stroke="black"
-        stroke-width="0.25"
-        stroke-dasharray="1"
-      />
+        <polyline
+          points="10,70 10,50 20,50 20,40 50,40 50,50 50,42 52,40 58,40 60,42 60,50 60,40 90,40 90,50, 100,50 100,70 90,70 90,80 60,80 60,70 60,78 58,80 52,80 50,78 50,70 50,80 20,80 20,70 10,70"
+          fill="none"
+          stroke="black"
+          stroke-width="0.25"
+        />
+        <polyline
+          points="20,50 90,50 90,70 20,70 20,50"
+          fill="none"
+          stroke="black"
+          stroke-width="0.25"
+          stroke-dasharray="1"
+        />
+        <polyline
+          points="50,50 50,70"
+          fill="none"
+          stroke="black"
+          stroke-width="0.25"
+          stroke-dasharray="1"
+        />
+        <polyline
+          points="60,50 60,70"
+          fill="none"
+          stroke="black"
+          stroke-width="0.25"
+          stroke-dasharray="1"
+        />
 
-      <polyline
-        points="5,40 5,85"
-        fill="none"
-        stroke="black"
-        stroke-width="0.25"
-        stroke-dasharray="1"
-      />
-      <text id="text-b" x="-3" y="62" font-size="5">B</text>
+        <polyline
+          points="5,40 5,85"
+          fill="none"
+          stroke="black"
+          stroke-width="0.25"
+          stroke-dasharray="1"
+        />
+        <text id="text-b" x="-3" y="62" font-size="5">B</text>
 
-      <polyline
-        points="5,85 100,85"
-        fill="none"
-        stroke="black"
-        stroke-width="0.25"
-        stroke-dasharray="1"
-      />
-      <text id="text-a" x="53" y="90" font-size="5" textLength="5.5">A</text>
+        <polyline
+          points="5,85 100,85"
+          fill="none"
+          stroke="black"
+          stroke-width="0.25"
+          stroke-dasharray="1"
+        />
+        <text id="text-a" x="53" y="90" font-size="5" textLength="5.5">A</text>
 
-      <text id="text-l-1" x="33" y="69" font-size="5" textLength="5.5">L</text>
-      <text id="text-l-2" x="73" y="69" font-size="5" textLength="5.5">L</text>
+        <text id="text-l-1" x="33" y="69" font-size="5" textLength="5.5">
+          L
+        </text>
+        <text id="text-l-2" x="73" y="69" font-size="5" textLength="5.5">
+          L
+        </text>
 
-      <text
-        id="text-h-1"
-        x="13"
-        y="69"
-        font-size="5"
-        textLength="5.5"
-        color="inherit"
-      >
-        H
-      </text>
-      <text id="text-h-2" x="93" y="69" font-size="5" textLength="5.5">H</text>
-      <text id="text-h-3" x="21" y="47" font-size="5" textLength="5.5">H</text>
-      <text id="text-h-4" x="21" y="77" font-size="5" textLength="5.5">H</text>
-      <text id="text-h-5" x="53" y="69" font-size="5" textLength="5.5">H</text>
+        <text
+          id="text-h-1"
+          x="13"
+          y="69"
+          font-size="5"
+          textLength="5.5"
+          color="inherit"
+        >
+          H
+        </text>
+        <text id="text-h-2" x="93" y="69" font-size="5" textLength="5.5">
+          H
+        </text>
+        <text id="text-h-3" x="21" y="47" font-size="5" textLength="5.5">
+          H
+        </text>
+        <text id="text-h-4" x="21" y="77" font-size="5" textLength="5.5">
+          H
+        </text>
+        <text id="text-h-5" x="53" y="69" font-size="5" textLength="5.5">
+          H
+        </text>
 
-      <text id="text-w-1" x="21" y="62" font-size="5" textLength="5.5">W</text>
-    </svg>
-    <button id="download">Download</button>
+        <text id="text-w-1" x="21" y="62" font-size="5" textLength="5.5">
+          W
+        </text>
+      </svg>
+    </div>
+    <form class="download-form">
+      <label for="imageName">Name</label>
+      <input type="text" name="imageName" id="imageName" value="template" />
+      <button id="download">Download</button>
+    </form>
     <script>
       const form = document.getElementById("form"),
         download = document.getElementById("download"),
+        imageName = document.getElementById("imageName"),
         svg = document.querySelector("svg"),
         l = document.getElementById("l"),
         w = document.getElementById("w"),
@@ -199,8 +242,9 @@
 
       const triggerDownload = (imgURI, fileName) => {
         const a = document.createElement("a");
+        const name = imageName.value || "template";
 
-        a.setAttribute("download", "image.svg");
+        a.setAttribute("download", `${name}.svg`);
         a.setAttribute("href", imgURI);
         a.setAttribute("target", "_blank");
 
